@@ -158,6 +158,9 @@ records.
   controls
 - Downloadable, self-contained field briefings for printing and
   limited-connectivity coordination
+- A lazy Replay & calibration workspace with five versioned Hawaiʻi
+  incident/exercise fixtures, deterministic Map/Model/Match/Operate checks,
+  explicit unavailable evidence, source citations, and a labeled export
 - Data-derived AFN planning hotspots across communication, medical,
   independence, safety, and transportation domains
 - **Compare locations**: map-linked, island-scoped geographic planning focus.
@@ -279,6 +282,8 @@ The backend listens on <http://127.0.0.1:8080> and currently exposes:
 - `GET /api/v1/shelter-plans`
 - `GET /api/v1/planning-areas`
 - `POST /api/v1/planning/resource-demand`
+- `GET /api/v1/planning/replays`
+- `POST /api/v1/planning/replays/run`
 - `GET /api/v1/planning/partner-matches?jurisdiction={id}&capability={capability}`
 - `GET /api/v1/planning/event-triggers`
 - `GET /api/v1/planning/live-status?lat={latitude}&lon={longitude}`
@@ -349,6 +354,16 @@ See [`docs/resource-demand-model.md`](./docs/resource-demand-model.md) for
 source vintages, formulas, and geography limits. Requests use the strict
 `resource-demand-request.v2` contract, are limited to 64 KiB, and return
 `Cache-Control: no-store`.
+
+The historical replay endpoints expose a controlled five-fixture catalog and
+deterministic calibration reports for hurricane, tsunami/earthquake, flood,
+wildfire, and volcanic planning. Reports compare bounded expectations with the
+current production resource-demand calculator without changing coefficients,
+rewriting source evidence, or mutating a live/collaborative plan. Missing,
+masked, stale, partial, unavailable, and synthetic exercise evidence remains
+explicit; there is no composite accuracy score. See
+[`docs/historical-replay.md`](./docs/historical-replay.md) and the
+[source review](./docs/research/historical-replay-sources-20261027.md).
 
 `GET /api/v1/planning/partner-matches` maps bounded mass-care capability
 enums to curated Hawaiʻi State, County, nonprofit, and coordination roles.
